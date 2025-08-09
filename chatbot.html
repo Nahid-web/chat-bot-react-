@@ -21,20 +21,6 @@
       }
 
       function ChatMessage({ message, sender }) {
-        // console.log(props);
-        // const message = props.message;
-
-        // const sender = props.sender;
-        // const { message, sender } = props;
-
-        /*  if (sender === "bot") {
-          return (
-            <div>
-              <img src="images/Chatbot.webp" width="50" />
-              {message}
-            </div>
-          );
-        } */
         return (
           <div>
             {sender === "bot" && <img src="images/Chatbot.webp" width="50" />}
@@ -44,29 +30,52 @@
         );
       }
 
+      function ChatMessages() {
+        const chatMessages = [
+          {
+            message: "Hello Chatbot",
+            sender: "user",
+          },
+          {
+            message: "Hello! How can i help you?",
+            sender: "bot",
+          },
+          {
+            message: "Can you get me todays date?",
+            sender: "user",
+          },
+          {
+            message: "Today is 27 september",
+            sender: "bot",
+          },
+        ];
+
+        return (
+          <>
+            {chatMessages.map((msg, index) => {
+              return (
+                <ChatMessage
+                  key={index}
+                  message={msg.message}
+                  sender={msg.sender}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
       function App() {
         return (
           <>
-            <ChatInput> </ChatInput>
-            <ChatMessage message="Hello Chatbot" sender="user"></ChatMessage>
-            <ChatMessage
-              message="Hello! How can i help you?"
-              sender="bot"
-            ></ChatMessage>
-            <ChatMessage
-              message="Can you get me todays date?"
-              sender="user"
-            ></ChatMessage>
-            <ChatMessage
-              message="Today is 27 september"
-              sender="bot"
-            ></ChatMessage>
+            <ChatInput />
+            <ChatMessages />
           </>
         );
       }
 
       const container = document.querySelector(".js-container");
-      ReactDOM.createRoot(container).render(<App> </App>);
+      ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
 </html>
