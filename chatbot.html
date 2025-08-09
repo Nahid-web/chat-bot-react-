@@ -35,27 +35,42 @@
           {
             message: "Hello Chatbot",
             sender: "user",
+            id: crypto.randomUUID(),
           },
           {
             message: "Hello! How can i help you?",
             sender: "bot",
+            id: crypto.randomUUID(),
           },
           {
             message: "Can you get me todays date?",
             sender: "user",
+            id: crypto.randomUUID(),
           },
           {
             message: "Today is 27 september",
             sender: "bot",
+            id: crypto.randomUUID(),
           },
         ];
 
+        function sendMessage() {
+          chatMessages.push({
+            message: "This is a new message",
+            sender: "user",
+            id: crypto.randomUUID(),
+          });
+
+          console.log(chatMessages);
+        }
+
         return (
           <>
+            <button onClick={sendMessage}> Send Message</button>
             {chatMessages.map((msg, index) => {
               return (
                 <ChatMessage
-                  key={index}
+                  key={msg.id}
                   message={msg.message}
                   sender={msg.sender}
                 />
